@@ -1,0 +1,76 @@
+plugins {
+	id 'java'
+	id 'application'
+	id 'org.bytedeco.gradle-javacpp-platform' version '1.5.9'
+	id 'org.beryx.runtime' version '1.12.7'
+}
+
+group = 'pl.kul.kulzaki'
+version = '1.0.0'
+
+java {
+	toolchain {
+		languageVersion.set(JavaLanguageVersion.of(21))
+	}
+}
+
+run {
+	standardInput = System.in
+}
+
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+application {
+	mainClassName = 'pl.kul.kulzaki.ApplicationRunner'
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	compileOnly 'org.projectlombok:lombok:1.18.30'
+	annotationProcessor 'org.projectlombok:lombok:1.18.30'
+	implementation 'org.json:json:20231013'
+	testImplementation('org.junit.jupiter:junit-jupiter-api:5.7.0')
+	testRuntimeOnly('org.junit.jupiter:junit-jupiter-engine:5.7.0')
+}
+
+task createCustomRuntimeImage(type: Exec) {
+	def runtimeImageDir = file("$buildDir/customRuntimeImage")
+
+	onlyIf {
+		!runtimeImageDir.exists()
+	}
+
+	commandLine 'jlink',
+			'--add-modules', 'java.net.http',
+			'--output', runtimeImageDir.absolutePath
+
+	executable = "${System.properties['java.home']}/bin/jlink"
+}
+
+runtime {
+	jpackage {
+		imageName = rootProject.name
+		skipInstaller = true
+		jvmArgs = [
+				'-Xmx512m',
+				'--add-modules', 'java.net.http'
+		]
+		imageOptions = ["--win-console", "--runtime-image", "$buildDir/customRuntimeImage"]
+
+	}
+}
+
+tasks.named('jpackage').configure {
+	dependsOn createCustomRuntimeImage
+}
+
+test {
+	useJUnitPlatform()
+}
