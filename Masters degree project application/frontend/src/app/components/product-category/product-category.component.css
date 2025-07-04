@@ -1,0 +1,143 @@
+body {
+    background : #f3f4f7;
+    font-family: 'Poppins', sans-serif;
+    margin     : 0;
+    padding    : 0;
+}
+
+.layout {
+    display        : flex;
+    justify-content: flex-start;
+    align-items    : flex-start;
+    gap            : 40px;
+    margin-top     : 100px;
+    margin-inline  : 100px;
+    max-width      : 100%;
+    padding        : 0 20px;
+}
+
+.sort-panel {
+    width        : 280px;
+    padding      : 20px;
+    background   : #ffffff;
+    border-radius: 12px;
+    box-shadow   : 0 2px 8px rgba(0, 0, 0, 0.1);
+    position     : sticky;
+    top          : 120px;
+    height       : fit-content;
+}
+
+.sort-panel h3 {
+    font-size    : 20px;
+    font-weight  : bold;
+    margin-bottom: 20px;
+    color        : #25415e;
+}
+
+.products-container {
+    flex: 1;
+}
+
+.category-card {
+    background-color: #ffffff;
+    border-radius   : 16px;
+    box-shadow      : 0 6px 24px rgba(0, 0, 0, 0.1);
+    padding         : 20px;
+}
+
+.category-title {
+    text-align   : center;
+    font-size    : 28px;
+    font-weight  : bold;
+    color        : #25415e;
+    margin-bottom: 20px;
+}
+
+.product-grid {
+    margin-top     : 20px;
+    display        : flex;
+    flex-wrap      : wrap;
+    justify-content: center;
+    gap            : 24px;
+    padding        : 10px;
+}
+
+.product-card-col {
+    display        : flex;
+    justify-content: center;
+    margin-bottom  : 20px;
+}
+
+.product-card {
+    width          : 280px;
+    height         : 400px;
+    display        : flex;
+    flex-direction : column;
+    align-items    : center;
+    justify-content: space-between;
+    border-radius  : 12px;
+    overflow       : hidden;
+    padding        : 16px;
+    text-align     : center;
+    transition     : transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow     : 0 4px 10px rgba(0, 0, 0, 0.1);
+    background     : white;
+}
+
+.product-card:hover {
+    transform : translateY(-5px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.product-link {
+    text-decoration: none;
+    color          : inherit;
+}
+
+.product-image {
+    width        : 200px;
+    height       : 200px;
+    object-fit   : contain;
+    border-radius: 8px;
+    background   : #fff;
+    padding      : 5px;
+}
+
+
+
+nz-card-meta {
+    flex-grow : 1;
+    width     : 100%;
+    text-align: center;
+}
+
+.product-rating,
+.product-stock,
+.product-discount {
+    font-size: 14px;
+    margin   : 4px 0;
+}
+
+.product-rating {
+    min-height: 20px;
+}
+
+.product-stock {
+    min-height : 20px;
+    font-weight: bold;
+    color      : #2c7a7b;
+}
+
+.product-discount {
+    min-height : 20px;
+    color      : #e53e3e;
+    font-weight: bold;
+}
+
+.loading-spinner {
+    margin: 20px 0;
+}
+
+nz-card {
+    width: 100%;
+}

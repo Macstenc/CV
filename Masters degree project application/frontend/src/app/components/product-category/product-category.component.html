@@ -1,0 +1,103 @@
+<div class="category-container">
+  <div class="layout">
+    <div class="sort-panel">
+      <h3>Filtry</h3>
+
+      <nz-form-item>
+        <nz-form-label [nzFor]="'priceRange'">Zakres cen</nz-form-label>
+        <nz-form-control>
+          <nz-slider
+            [nzRange]="true"
+            [nzStep]="1"
+            [nzMax]="sliderMaxValue"
+            [nzDefaultValue]="[0, sliderMaxValue]"
+            (nzOnAfterChange)="onPriceChange($event)"
+          ></nz-slider>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzFor]="'recommended'">Polecane</nz-form-label>
+        <nz-form-control>
+          <nz-switch
+            [(ngModel)]="recommended"
+            [ngModelOptions]="{ standalone: true }"
+            (ngModelChange)="fetchProducts()"
+          ></nz-switch>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzFor]="'sort'">Sortowanie</nz-form-label>
+        <nz-form-control>
+          <nz-select [(ngModel)]="sortOption" (ngModelChange)="fetchProducts()">
+            <nz-option nzValue="price" nzLabel="Cena"></nz-option>
+            <nz-option
+              nzValue="customerViews"
+              nzLabel="Najbardziej popularne"
+            ></nz-option>
+            <nz-option nzValue="averageRating" nzLabel="Ocena"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+    <div class="products-container">
+      <nz-card class="category-card">
+        <h2 class="category-title">Produkty w kategorii: {{ category }}</h2>
+
+        <div *ngIf="isLoading" class="loading-container">
+          <nz-spin nzSimple class="loading-spinner"></nz-spin>
+          <p>Ładowanie produktów...</p>
+        </div>
+
+        <div *ngIf="!isLoading && products.length === 0" class="no-products">
+          <nz-empty
+            nzNotFoundImage="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
+            [nzNotFoundContent]="contentTpl"
+          >
+            <ng-template #contentTpl>
+              <span> Brak produktów w tej kategorii. </span>
+            </ng-template></nz-empty
+          >
+        </div>
+
+        <div *ngIf="!isLoading && products.length > 0" class="product-grid">
+          <nz-row [nzGutter]="8" justify="start">
+            <nz-col
+              *ngFor="let product of products"
+              [nzSpan]="6"
+              class="product-card-col"
+            >
+              <a [routerLink]="['/product', product.id]" class="product-link">
+                <nz-card class="product-card" [nzBordered]="true">
+                  <nz-card-meta
+                    [nzTitle]="product.name"
+                    [nzDescription]="product.price | currency : 'PLN'"
+                  ></nz-card-meta>
+                  <img
+                    nz-image
+                    [src]="product.mainPhoto"
+                    [alt]="product.name"
+                    class="product-image"
+                  />
+                  <p class="product-rating">
+                    Ocena: {{ product.averageRating }} ⭐
+                  </p>
+                  <p class="product-stock">
+                    Dostępność:
+                    {{ product.stockQuantity > 0 ? "W magazynie" : "Brak" }}
+                  </p>
+                  <p *ngIf="product.discount > 0" class="product-discount">
+                    Promocja: -{{ product.discount }}% (do
+                    {{ product.promotionEndDate | date : "shortDate" }}).
+                  </p>
+                </nz-card>
+              </a>
+            </nz-col>
+          </nz-row>
+        </div>
+      </nz-card>
+    </div>
+  </div>
+</div>

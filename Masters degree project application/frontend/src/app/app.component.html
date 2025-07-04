@@ -1,0 +1,12 @@
+<!-- app.component.html -->
+<app-navbar
+  (categorySelected)="navigateToCategory($event)"
+  (searchEvent)="onSearch($event)"
+></app-navbar>
+
+<div class="main-content">
+  <router-outlet></router-outlet>
+  <!-- Użycie komponentu -->
+</div>
+
+<app-footer></app-footer>

@@ -1,0 +1,178 @@
+.recommended-container {
+    margin          : 0;
+    padding         : 20px 0;
+    background-color: #e0e0e0;
+    width           : 100%;
+    position        : relative;
+}
+
+.cloud-wrapper {
+    background-color: #ffffff;
+    border-radius   : 20px;
+    box-shadow      : 0 8px 20px rgba(0, 0, 0, 0.2);
+    margin-left     : 80px;
+    margin-right    : 80px;
+    margin-top      : 0px;
+
+    padding: 20px;
+    width  : auto;
+}
+
+.cloud-wrapper h2 {
+    font-size    : 24px;
+    margin-bottom: 20px;
+    text-align   : left;
+    color        : #333;
+}
+
+.carousel-wrapper {
+    position: relative;
+    overflow: hidden;
+    width   : 100%;
+
+}
+
+.carousel {
+    display   : flex;
+    transition: transform 0.5s ease-in-out;
+    width     : auto;
+}
+
+.carousel-page {
+    flex           : 0 0 100%;
+    display        : flex;
+    justify-content: space-between;
+    gap            : 15px;
+    padding        : 0 20px;
+}
+
+.product-row {
+    display        : flex;
+    justify-content: space-between;
+    flex-wrap      : nowrap;
+    gap            : 15px;
+    width          : 100%;
+}
+
+.product-card {
+    flex          : 1;
+    max-width     : calc(20% - 15px);
+    background    : #fff;
+    border-radius : 8px;
+    box-shadow    : 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow      : hidden;
+    position      : relative;
+    transition    : transform 0.2s ease, box-shadow 0.2s ease;
+    cursor        : pointer;
+    padding-bottom: 20px;
+}
+
+.product-card:hover {
+    transform : translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.add-to-cart-btn {
+    position        : absolute;
+    bottom          : 10px;
+    right           : 10px;
+    display         : flex;
+    z-index         : 10;
+    background-color: transparent;
+    color           : #333;
+    font-size       : 24px;
+    width           : 40px;
+    height          : 40px;
+    border-radius   : 50%;
+    border          : 1px solid #ddd;
+    display         : flex;
+    align-items     : center;
+    justify-content : center;
+    transition      : all 0.3s ease;
+    opacity         : 0;
+    pointer-events  : none;
+}
+
+.product-card:hover .add-to-cart-btn {
+    opacity       : 1;
+    pointer-events: auto;
+}
+
+.add-to-cart-btn:hover {
+    border-color: #4CAF50;
+    color       : #4CAF50;
+}
+
+.add-to-cart-btn i {
+    font-size: 18px;
+}
+
+.product-image-container {
+    text-align: center;
+}
+
+.product-image-container img {
+    width     : 100%;
+    height    : 200px;
+    object-fit: contain;
+}
+
+.badge {
+    position        : absolute;
+    top             : 10px;
+    left            : 10px;
+    background-color: #ff5722;
+    color           : white;
+    font-size       : 12px;
+    font-weight     : bold;
+    padding         : 2px 8px;
+    border-radius   : 4px;
+}
+
+
+.product-info {
+    padding   : 10px;
+    text-align: center;
+}
+
+.product-info h3 {
+    font-size    : 16px;
+    margin-bottom: 10px;
+}
+
+.price {
+    font-size    : 14px;
+    margin-bottom: 10px;
+}
+
+.old-price {
+    text-decoration: line-through;
+    color          : #888;
+    margin-right   : 5px;
+}
+
+.carousel-arrow {
+    background-color: #000000a6;
+    color           : white;
+    border-radius   : 50%;
+    cursor          : pointer;
+    font-size       : 20px;
+    padding-bottom  : 37px;
+    position        : absolute;
+    top             : 50%;
+    transform       : translateY(-50%);
+    z-index         : 10;
+}
+
+.carousel-arrow.left {
+    left: 90px;
+}
+
+.carousel-arrow.right {
+    right: 90px;
+}
+
+.carousel-arrow:disabled {
+    background-color: #ccc;
+    cursor          : not-allowed;
+}

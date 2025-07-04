@@ -1,0 +1,124 @@
+<div class="cart-container">
+  <!-- Lewa część z produktami -->
+  <div class="cart-left">
+    <nz-card [nzBordered]="false" class="cart-card">
+      <div class="cart-header">
+        <span class="cart-title">Twój Koszyk ({{ cartItems.length }})</span>
+        <span class="clear-cart" (click)="clearCart()">
+          Wyczyść koszyk <i class="fas fa-trash-alt"></i>
+        </span>
+      </div>
+
+      <div *ngIf="cartItems.length === 0">
+        <nz-empty
+          nzNotFoundImage="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
+          [nzNotFoundContent]="contentTpl"
+        >
+          <ng-template #contentTpl>
+            <span> Twój koszyk jest pusty </span>
+          </ng-template>
+        </nz-empty>
+      </div>
+
+      <div *ngIf="cartItems.length > 0">
+        <nz-list
+          [nzBordered]="true"
+          [nzDataSource]="cartItems"
+          [nzRenderItem]="item"
+        >
+          <ng-template #item let-item>
+            <nz-list-item>
+              <nz-list-item-meta
+                [nzAvatar]="item.product.mainPhoto"
+                [nzTitle]="item.product.name"
+                [nzDescription]="'Ilość: ' + item.quantity"
+              ></nz-list-item-meta>
+              <div class="cart-item-actions">
+                <div class="quantity-selector">
+                  <button
+                    nz-button
+                    nzType="text"
+                    (click)="decreaseQuantity(item)"
+                  >
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <span>{{ item.quantity }}</span>
+                  <button
+                    nz-button
+                    nzType="text"
+                    (click)="increaseQuantity(item)"
+                  >
+                    <i class="fas fa-plus"></i>
+                  </button>
+                </div>
+                <strong>{{
+                  item.quantity *
+                    (item.product.discountedPrice || item.product.price)
+                    | currency : "PLN"
+                }}</strong>
+                <button nz-button nzType="text" (click)="removeItem(item)">
+                  <i class="fas fa-trash-alt"></i>
+                </button>
+              </div>
+            </nz-list-item>
+          </ng-template>
+        </nz-list>
+
+        <div class="cart-summary">
+          <h3>Podsumowanie:</h3>
+          <p>
+            Łączna kwota:
+            <strong>{{ totalAmount | currency : "PLN" }}</strong>
+          </p>
+        </div>
+      </div>
+    </nz-card>
+  </div>
+
+  <!-- Prawa część z kodem rabatowym i przyciskami -->
+  <div class="cart-right">
+    <div class="discount-code">
+      <div
+        class="discount-code-label"
+        [ngClass]="{ open: showDiscountInput }"
+        (click)="toggleDiscountInput()"
+      >
+        <i class="fas fa-gift"></i> Masz kod rabatowy?
+        <i
+          class="fas"
+          [ngClass]="{
+            'fa-chevron-down': !showDiscountInput,
+            'fa-chevron-up': showDiscountInput
+          }"
+        ></i>
+
+        <div *ngIf="showDiscountInput">
+          <input nz-input placeholder="Wprowadź kod" nzSize="large" />
+        </div>
+      </div>
+    </div>
+
+    <div class="button-background">
+      <button
+        nz-button
+        nzType="primary"
+        nzBlock
+        (click)="checkout()"
+        class="discount-code-button"
+        [disabled]="cartItems.length === 0"
+      >
+        Przejdź do płatności
+      </button>
+
+      <button
+        nz-button
+        nzType="default"
+        nzBlock
+        (click)="goBackToShopping()"
+        class="discount-code-button"
+      >
+        Powrót do zakupów
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+<div class="box">
+  <nz-carousel nzAutoPlay>
+    @for (i of array; track i) {
+    <div nz-carousel-content>
+      <img
+        [src]="'assets/Promotions/Promotion' + i + '.jpg'"
+        alt="Promotion {{ i + 1 }}"
+        class="promotion-image"
+      />
+    </div>
+    }
+  </nz-carousel>
+  <app-product-carousel
+    [title]="'Polecane'"
+    [products]="recommendedProducts"
+  ></app-product-carousel>
+
+  <app-product-carousel
+    [title]="'Najcześciej ogladane'"
+    [products]="mostViewed"
+  ></app-product-carousel>
+
+  <app-product-carousel
+    [title]="'Nowości'"
+    [products]="newProducts"
+  ></app-product-carousel>
+
+  <app-product-carousel
+    [title]="'Ostatnie sztuki'"
+    [products]="lastProducts"
+  ></app-product-carousel>
+
+  <app-product-carousel
+    [title]="'Najlepsze oferty'"
+    [products]="highestDiscount"
+  ></app-product-carousel>
+</div>

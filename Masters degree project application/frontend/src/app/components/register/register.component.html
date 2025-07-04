@@ -1,0 +1,211 @@
+<div class="register-container">
+  <nz-card class="register-card">
+    <h2 class="register-title">Utwórz konto</h2>
+    <form nz-form (ngSubmit)="onSubmit()" #registerForm="ngForm">
+      <div class="form-row">
+        <nz-form-label [nzFor]="'username'" [nzRequired]="true">
+          Nazwa użytkownika
+        </nz-form-label>
+        <nz-form-control>
+          <input
+            nz-input
+            id="username"
+            name="username"
+            type="text"
+            [(ngModel)]="user.username"
+            #username="ngModel"
+            required
+            minlength="3"
+            placeholder="Wprowadź nazwę użytkownika"
+          />
+          <div
+            *ngIf="username.invalid && username.touched"
+            class="error-message"
+          >
+            <div *ngIf="username.errors?.['required']">
+              Nazwa użytkownika jest wymagana.
+            </div>
+            <div *ngIf="username.errors?.['minlength']">
+              Nazwa użytkownika musi mieć co najmniej 3 znaki.
+            </div>
+          </div>
+        </nz-form-control>
+      </div>
+
+      <div class="form-row">
+        <nz-form-label [nzFor]="'password'" [nzRequired]="true">
+          Hasło
+        </nz-form-label>
+        <nz-form-control>
+          <input
+            nz-input
+            id="password"
+            name="password"
+            type="password"
+            [(ngModel)]="user.password"
+            #password="ngModel"
+            required
+            minlength="6"
+            placeholder="Wprowadź hasło"
+          />
+          <div
+            *ngIf="password.invalid && password.touched"
+            class="error-message"
+          >
+            <div *ngIf="password.errors?.['required']">
+              Hasło jest wymagane.
+            </div>
+            <div *ngIf="password.errors?.['minlength']">
+              Hasło musi mieć co najmniej 6 znaków.
+            </div>
+          </div>
+        </nz-form-control>
+      </div>
+
+      <div class="form-row">
+        <nz-form-label [nzFor]="'repeatPassword'" [nzRequired]="true">
+          Powtórz hasło
+        </nz-form-label>
+        <nz-form-control>
+          <input
+            nz-input
+            id="repeatPassword"
+            name="repeatPassword"
+            type="password"
+            [(ngModel)]="repeatPassword"
+            #repeatPasswordField="ngModel"
+            required
+            placeholder="Powtórz hasło"
+          />
+          <div
+            *ngIf="
+              (repeatPasswordField.invalid && repeatPasswordField.touched) ||
+              passwordMismatch
+            "
+            class="error-message"
+          >
+            <div *ngIf="repeatPasswordField.errors?.['required']">
+              Powtórzenie hasła jest wymagane.
+            </div>
+            <div *ngIf="passwordMismatch">Hasła nie są zgodne.</div>
+          </div>
+        </nz-form-control>
+      </div>
+
+      <div class="form-row">
+        <nz-form-label [nzFor]="'email'" [nzRequired]="true">
+          Email
+        </nz-form-label>
+        <nz-form-control>
+          <input
+            nz-input
+            id="email"
+            name="email"
+            type="email"
+            [(ngModel)]="user.email"
+            #email="ngModel"
+            required
+            email
+            placeholder="Wprowadź adres email"
+          />
+          <div *ngIf="email.invalid && email.touched" class="error-message">
+            <div *ngIf="email.errors?.['required']">
+              Adres email jest wymagany.
+            </div>
+            <div *ngIf="email.errors?.['email']">
+              Wprowadź poprawny adres email.
+            </div>
+          </div>
+        </nz-form-control>
+      </div>
+
+      <div class="form-row">
+        <nz-form-label [nzFor]="'phoneNumber'">Numer telefonu</nz-form-label>
+        <nz-form-control>
+          <input
+            nz-input
+            id="phoneNumber"
+            name="phoneNumber"
+            type="tel"
+            [(ngModel)]="user.phoneNumber"
+            placeholder="Wprowadź numer telefonu (opcjonalnie)"
+          />
+        </nz-form-control>
+      </div>
+
+      <div class="form-row">
+        <nz-form-label>Adresy dostawy</nz-form-label>
+        <nz-form-control>
+          <div
+            *ngFor="let address of user.shippingAddresses; let i = index"
+            class="address-group"
+          >
+            <button
+              nz-button
+              nzDanger
+              (click)="removeAddress(i)"
+              class="remove-btn"
+            >
+              Usuń
+            </button>
+            <div class="address-inputs">
+              <input
+                nz-input
+                [(ngModel)]="address.street"
+                name="street{{ i }}"
+                placeholder="Ulica"
+                required
+              />
+              <input
+                nz-input
+                [(ngModel)]="address.city"
+                name="city{{ i }}"
+                placeholder="Miasto"
+                required
+              />
+              <input
+                nz-input
+                [(ngModel)]="address.postalCode"
+                name="postalCode{{ i }}"
+                placeholder="Kod pocztowy"
+                required
+              />
+              <input
+                nz-input
+                [(ngModel)]="address.country"
+                name="country{{ i }}"
+                placeholder="Kraj"
+                required
+              />
+            </div>
+          </div>
+          <button
+            nz-button
+            nzType="dashed"
+            (click)="addAddress()"
+            class="add-address-btn"
+          >
+            Dodaj adres
+          </button>
+        </nz-form-control>
+      </div>
+
+      <div class="form-row">
+        <button
+          nz-button
+          nzType="primary"
+          [nzLoading]="loading"
+          type="submit"
+          [disabled]="registerForm.invalid"
+          class="register-btn"
+        >
+          Zarejestruj się
+        </button>
+      </div>
+    </form>
+
+    <div *ngIf="errorMessage" class="error-toast">
+      {{ errorMessage }}
+    </div>
+  </nz-card>
+</div>

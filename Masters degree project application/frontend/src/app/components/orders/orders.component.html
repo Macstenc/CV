@@ -1,0 +1,68 @@
+<div class="box">
+  <div class="orders-container">
+    <h2>Moje Zamówienia</h2>
+
+    <nz-spin [nzSpinning]="loading">
+      <div *ngIf="orders.length > 0; else noOrders">
+        <nz-collapse nzAccordion>
+          <nz-collapse-panel
+            *ngFor="let order of orders"
+            [nzHeader]="'Numer zamówienia: ' + order.id"
+          >
+            <div>
+              <p>
+                <strong>Data zamówienia:</strong>
+                {{ order.orderDate | date : "short" }}
+              </p>
+              <p>
+                <strong>Użytkownik:</strong> {{ order.userName }}
+                {{ order.userLastName }}
+              </p>
+              <p><strong>Email:</strong> {{ order.userEmail }}</p>
+              <p><strong>Telefon:</strong> {{ order.userPhone }}</p>
+
+              <h4>Adres dostawy:</h4>
+              <p>
+                {{ order.shippingAddress.street }},
+                {{ order.shippingAddress.city }},
+                {{ order.shippingAddress.postalCode }},
+                {{ order.shippingAddress.country }}
+              </p>
+
+              <h4>Produkty:</h4>
+              <nz-collapse>
+                <nz-collapse-panel
+                  *ngFor="let item of order.items"
+                  [nzHeader]="getProductName(item.productId)"
+                >
+                  <div>
+                    <p>
+                      <strong>Nazwa produktu:</strong>
+                      {{ getProductName(item.productId) }}
+                    </p>
+                    <p><strong>Ilość:</strong> {{ item.quantity }}</p>
+                    <p><strong>Cena:</strong> {{ item.price | currency }}</p>
+                    <p>
+                      <strong>Łączna cena:</strong>
+                      {{ item.quantity * item.price | currency }}
+                    </p>
+                  </div>
+                </nz-collapse-panel>
+              </nz-collapse>
+
+              <p>
+                <strong>Łączna cena zamówienia:</strong>
+                {{ order.totalPrice | currency }}
+              </p>
+            </div>
+          </nz-collapse-panel>
+        </nz-collapse>
+      </div>
+      <ng-template #noOrders>
+        <div class="no-orders-message">
+          <p>Nie znaleziono żadnych zamówień dla tego adresu email.</p>
+        </div>
+      </ng-template>
+    </nz-spin>
+  </div>
+</div>

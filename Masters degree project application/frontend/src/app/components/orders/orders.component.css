@@ -1,0 +1,147 @@
+.box {
+    display         : flex;
+    flex-direction  : column;
+    margin          : 50px auto;
+    background-color: #ffffff;
+    box-shadow      : 0px 8px 30px rgba(0, 0, 0, 0.1);
+    border-radius   : 12px;
+    padding         : 40px;
+    max-width       : 90%;
+    width           : 700px;
+    justify-content : center;
+    overflow-y      : auto;
+    transition      : all 0.3s ease;
+    background-color: #fff;
+    border-radius   : 10px;
+}
+
+@media (max-width: 768px) {
+    .box {
+        width  : 90%;
+        padding: 25px;
+    }
+}
+
+h2 {
+    font-size    : 24px;
+    font-weight  : 600;
+    color        : #2c3e50;
+    text-align   : center;
+    margin-bottom: 20px;
+}
+
+.orders-container {
+    padding: 20px;
+}
+
+.no-orders-message {
+    text-align: center;
+    font-size : 18px;
+    color     : #888;
+    margin-top: 20px;
+}
+
+.nz-collapse-panel {
+    margin-bottom   : 20px;
+    padding         : 15px 20px;
+    border-radius   : 10px;
+    background-color: #f9f9f9;
+    transition      : background-color 0.3s ease;
+}
+
+.nz-collapse-panel:hover {
+    background-color: #f1f1f1;
+}
+
+.nz-collapse-panel .ant-collapse-header {
+    font-size  : 18px;
+    font-weight: 600;
+    color      : #2c3e50;
+    padding    : 10px;
+}
+
+.nz-collapse-panel .ant-collapse-arrow {
+    color: #007bff;
+}
+
+.nz-collapse-panel div p {
+    font-size: 15px;
+    color    : #666;
+    margin   : 5px 0;
+}
+
+h4 {
+    font-size     : 20px;
+    font-weight   : 600;
+    margin-top    : 25px;
+    color         : #2c3e50;
+    border-bottom : 2px solid #ddd;
+    padding-bottom: 5px;
+    margin-bottom : 15px;
+}
+
+p>strong {
+    color    : #2c3e50;
+    font-size: 18px;
+}
+
+table,
+th,
+td {
+    border       : 1px solid #ddd;
+    border-radius: 5px;
+    padding      : 8px;
+}
+
+table {
+    width          : 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    text-align: left;
+}
+
+th {
+    background-color: #2c3e50;
+    color           : #fff;
+}
+
+button {
+    background-color: #007bff;
+    color           : #fff;
+    border          : none;
+    padding         : 10px 20px;
+    font-size       : 16px;
+    border-radius   : 5px;
+    cursor          : pointer;
+    transition      : background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.nz-spin {
+    display        : flex;
+    justify-content: center;
+    align-items    : center;
+    min-height     : 200px;
+}
+
+body {
+    font-family     : 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    margin          : 0;
+    padding         : 0;
+}
+
+a {
+    color          : #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}

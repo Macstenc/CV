@@ -1,0 +1,303 @@
+/* Navbar container */
+.custom-navbar {
+    display         : flex;
+    align-items     : center;
+    justify-content : space-between;
+    padding         : 15px 20px;
+    background-color: #2c3e50;
+    /* Ciemniejsze tło navbaru */
+    color           : white;
+    font-size       : 16px;
+    border-bottom   : 2px solid #ecf0f1;
+    position        : fixed;
+    top             : 0;
+    left            : 0;
+    width           : 100%;
+    z-index         : 1000;
+    transition      : height 0.3s ease;
+}
+
+/* Expanded state of navbar */
+.custom-navbar.expanded {
+    height: auto;
+}
+
+/* Nowe przyciski: Panel użytkownika i Zamówienia */
+.user-panel-trigger,
+.orders-trigger {
+    font-size       : 16px;
+    font-weight     : bold;
+    color           : white;
+    cursor          : pointer;
+    background-color: #34495e;
+    border          : 2px solid transparent;
+    display         : flex;
+    align-items     : center;
+    padding         : 8px 20px;
+    border-radius   : 25px;
+    transition      : background-color 0.3s ease, transform 0.3s ease;
+    margin-left     : 10px;
+}
+
+.user-panel-trigger:hover,
+.orders-trigger:hover {
+    background-color: #2980b9;
+    transform       : scale(1.05);
+}
+
+.user-panel-trigger i,
+.orders-trigger i {
+    margin-left: 8px;
+    font-size  : 18px;
+}
+
+/* Logo */
+.navbar-logo {
+    font-size  : 1.8rem;
+    font-weight: bold;
+    color      : #ecf0f1;
+}
+
+/* Search bar container */
+.search-container {
+    display     : flex;
+    align-items : center;
+    position    : relative;
+    width       : 50%;
+    margin-right: 20px;
+}
+
+.search-icon {
+    font-size : 24px;
+    color     : #ecf0f1;
+    transition: transform 0.3s ease-in-out;
+}
+
+.search-icon:hover {
+    transform: scale(1.1);
+}
+
+.search-results-panel {
+    position        : absolute;
+    top             : 100%;
+    left            : 0;
+    width           : 100%;
+    background-color: #25415e;
+    box-shadow      : 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius   : 0 0 10px 10px;
+    padding         : 10px;
+    z-index         : 100;
+}
+
+.search-results-panel::before {
+    content         : '';
+    position        : absolute;
+    top             : -10px;
+    left            : 20px;
+    width           : 20px;
+    height          : 10px;
+    background-color: #2c3e50;
+    clip-path       : polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+/* Categories trigger button */
+.categories-trigger {
+    font-size       : 16px;
+    font-weight     : bold;
+    color           : white;
+    cursor          : pointer;
+    background-color: transparent;
+    border          : none;
+    padding         : 0;
+    margin-left     : 20px;
+    display         : flex;
+    align-items     : center;
+    transition      : color 0.3s ease;
+}
+
+.categories-trigger:hover {
+    color: #2980b9;
+    /* Zmieniony hover na bardziej subtelny */
+}
+
+.categories-trigger .material-icons {
+    margin-right: 5px;
+    font-size   : 20px;
+}
+
+/* Auth and cart section */
+.auth-cart {
+    display     : flex;
+    align-items : center;
+    margin-right: 10px;
+    /* Zmniejsz margines po prawej stronie */
+}
+
+/* Nowoczesny przycisk logowania */
+.login-trigger,
+.logout-trigger {
+    font-size       : 16px;
+    font-weight     : bold;
+    color           : white;
+    cursor          : pointer;
+    background-color: #34495e;
+    /* Dopasowanie do tła navbaru (ciemniejszy szary) */
+    border          : 2px solid transparent;
+    display         : flex;
+    align-items     : center;
+    padding         : 8px 20px;
+    border-radius   : 25px;
+    /* Zaokrąglone rogi */
+    transition      : background-color 0.3s ease, transform 0.3s ease;
+    margin-left     : 5px;
+    margin-right    : 0;
+    /* Zmniejsz margines po lewej stronie przycisku */
+}
+
+/* Efekt hover dla przycisków logowania */
+.login-trigger:hover,
+.logout-trigger:hover {
+    background-color: #2980b9;
+    /* Niebieski odcień na hover, pasujący do reszty navbaru */
+    transform       : scale(1.05);
+    /* Mały efekt powiększenia */
+}
+
+/* Ikony przycisku */
+.login-trigger i,
+.logout-trigger i {
+    margin-left: 8px;
+    font-size  : 18px;
+}
+
+/* Dodajemy styl dla wylogowania */
+.logout-trigger {
+    background-color: #c0392b;
+    /* Ciemniejszy czerwony, dopasowany do ciemnego tła */
+}
+
+.logout-trigger:hover {
+    background-color: #e74c3c;
+    /* Jaśniejszy czerwony na hover */
+}
+
+/* Wyrównanie przycisku na prawo */
+.auth-cart .logout-trigger {
+    margin-left: 10px;
+}
+
+/* Cart icon */
+/* Cart icon as clickable text */
+.cart-icon {
+    font-size  : 16px;
+    /* Rozmiar czcionki */
+    font-weight: bold;
+    /* Pogrubienie tekstu */
+    color      : white;
+    /* Kolor tekstu */
+    cursor     : pointer;
+    /* Kursor wskazujący kliknięcie */
+    display    : flex;
+    align-items: center;
+    /* Wyrównanie ikony i tekstu w pionie */
+    transition : color 0.3s ease;
+    /* Efekt zmiany koloru */
+}
+
+/* Hover effect for cart icon text */
+.cart-icon:hover {
+    color: #2980b9;
+    /* Kolor niebieski po najechaniu */
+}
+
+/* Icon next to the text */
+.cart-icon i {
+    margin-right: 8px;
+    /* Odstęp między ikoną a tekstem */
+    font-size   : 18px;
+    /* Rozmiar ikony */
+}
+
+/* Możesz dodać dodatkowe media query, jeśli chcesz dostosować wygląd na różnych urządzeniach */
+
+
+/* Navbar Separator */
+.navbar-separator {
+    background-color: #bdc3c7;
+    height          : 1px;
+    margin-top      : 10px;
+    margin-bottom   : 10px;
+}
+
+/* Categories list styling when expanded */
+.categories-list {
+    display              : grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap                  : 15px;
+    background-color     : #34495e;
+    color                : white;
+    width                : 100%;
+    padding              : 15px 20px;
+    opacity              : 0;
+    transform            : translateY(-10px);
+    transition           : all 0.3s ease-in-out;
+    border-top           : 1px solid #bdc3c7;
+    box-shadow           : inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-top           : 10px;
+}
+
+.custom-navbar.expanded .categories-list {
+    opacity         : 1;
+    transform       : translateY(0);
+    background-color: #2c3e50;
+}
+
+/* Category items */
+.category-item {
+    display        : flex;
+    justify-content: center;
+    align-items    : center;
+    font-size      : 16px;
+    font-weight    : bold;
+    padding        : 10px 15px;
+    cursor         : pointer;
+    text-align     : center;
+    transition     : background-color 0.3s ease, color 0.3s ease;
+    border-radius  : 8px;
+}
+
+.category-item:hover {
+    background-color: #2980b9;
+    color           : #fff;
+}
+
+/* Make categories list responsive */
+@media (max-width: 1200px) {
+    .categories-list {
+        grid-template-columns: repeat(8, 1fr);
+    }
+}
+
+@media (max-width: 992px) {
+    .categories-list {
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .categories-list {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .categories-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 400px) {
+    .categories-list {
+        grid-template-columns: 1fr;
+    }
+}

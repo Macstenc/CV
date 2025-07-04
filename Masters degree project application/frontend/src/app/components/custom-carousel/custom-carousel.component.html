@@ -1,0 +1,59 @@
+<div class="recommended-container">
+  <div class="cloud-wrapper">
+    <h2>{{ title }}</h2>
+    <div class="carousel-wrapper">
+      <div class="carousel" [style.transform]="getTransformStyle()">
+        <div *ngFor="let productChunk of productChunks" class="carousel-page">
+          <div class="product-row">
+            <div
+              *ngFor="let product of productChunk"
+              class="product-card"
+              (click)="navigateToProduct(product.id)"
+            >
+              <div class="product-image-link">
+                <div class="product-image-container">
+                  <img [src]="product.mainPhoto" [alt]="product.name" />
+                  <div class="badge" *ngIf="product.discount > 0">Promocja</div>
+                </div>
+              </div>
+              <div class="product-info">
+                <h3>{{ product.name }}</h3>
+                <p class="price">
+                  <span *ngIf="product.discount > 0" class="old-price">
+                    {{ product.price | currency : "PLN" }}
+                  </span>
+                  {{ product.discountedPrice | currency : "PLN" }}
+                </p>
+              </div>
+              <button
+                nz-button
+                nzType="primary"
+                nzShape="circle"
+                class="add-to-cart-btn"
+                (click)="addToCart(product); $event.stopPropagation()"
+              >
+                <i class="fa fa-shopping-cart"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button
+        nz-button
+        class="carousel-arrow left"
+        (click)="prevPage()"
+        [disabled]="currentPage === 0"
+      >
+        <i class="fa fa-chevron-left"></i>
+      </button>
+      <button
+        nz-button
+        class="carousel-arrow right"
+        (click)="nextPage()"
+        [disabled]="currentPage === productChunks.length - 1"
+      >
+        <i class="fa fa-chevron-right"></i>
+      </button>
+    </div>
+  </div>
+</div>

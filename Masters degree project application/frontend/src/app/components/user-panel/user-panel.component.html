@@ -1,0 +1,104 @@
+<div class="box">
+  <nz-spin [nzSpinning]="isLoading">
+    <div *ngIf="!isLoading">
+      <h2 class="panel-title">Panel użytkownika</h2>
+      <form
+        [formGroup]="userForm"
+        (ngSubmit)="submitForm()"
+        nz-form
+        [nzLayout]="'vertical'"
+        class="form-container"
+      >
+        <nz-form-item class="input-group">
+          <nz-form-label [nzFor]="'username'">Nazwa użytkownika</nz-form-label>
+          <nz-form-control>
+            <input nz-input id="username" formControlName="username" />
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item class="input-group">
+          <nz-form-label [nzFor]="'firstName'">Imię</nz-form-label>
+          <nz-form-control>
+            <input nz-input id="firstName" formControlName="firstName" />
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item class="input-group">
+          <nz-form-label [nzFor]="'lastName'">Nazwisko</nz-form-label>
+          <nz-form-control>
+            <input nz-input id="lastName" formControlName="lastName" />
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item class="input-group">
+          <nz-form-label [nzFor]="'email'">Adres e-mail</nz-form-label>
+          <nz-form-control>
+            <input nz-input id="email" formControlName="email" />
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item class="input-group">
+          <nz-form-label [nzFor]="'phoneNumber'">Numer telefonu</nz-form-label>
+          <nz-form-control>
+            <input nz-input id="phoneNumber" formControlName="phoneNumber" />
+          </nz-form-control>
+        </nz-form-item>
+
+        <div formArrayName="shippingAddresses">
+          <nz-form-item
+            *ngFor="let address of shippingAddresses.controls; let i = index"
+            [formGroupName]="i"
+            class="input-group"
+          >
+            <nz-form-label>Adres {{ i + 1 }}</nz-form-label>
+            <nz-form-control>
+              <input nz-input placeholder="Ulica" formControlName="street" />
+            </nz-form-control>
+            <nz-form-control>
+              <input nz-input placeholder="Miasto" formControlName="city" />
+            </nz-form-control>
+            <nz-form-control>
+              <input
+                nz-input
+                placeholder="Kod pocztowy"
+                formControlName="postalCode"
+              />
+            </nz-form-control>
+            <nz-form-control>
+              <input nz-input placeholder="Kraj" formControlName="country" />
+            </nz-form-control>
+            <button
+              nz-button
+              nzType="dashed"
+              nzDanger
+              (click)="removeAddress(i)"
+              class="remove-address-btn"
+            >
+              Usuń
+            </button>
+          </nz-form-item>
+        </div>
+
+        <button
+          nz-button
+          nzType="dashed"
+          (click)="addAddress()"
+          class="add-address-btn"
+        >
+          Dodaj adres
+        </button>
+
+        <div class="submit-btn-container">
+          <button
+            nz-button
+            nzType="primary"
+            [disabled]="userForm.invalid"
+            class="submit-btn"
+          >
+            Zapisz
+          </button>
+        </div>
+      </form>
+    </div>
+  </nz-spin>
+</div>

@@ -1,0 +1,59 @@
+[nz-carousel-content] {
+    text-align     : center;
+    height         : 340px;
+    line-height    : 160px;
+    background     : #364d79;
+    color          : #fff;
+    overflow       : hidden;
+    image-rendering: optimizeQuality;
+
+}
+
+h3 {
+    margin-top   : 20px;
+    margin-bottom: 10px;
+    font-size    : 24px;
+    color        : #333;
+    font-weight  : bold;
+    text-align   : center;
+}
+
+
+.promotion-image {
+    width          : 100%;
+    height         : 100%;
+    object-fit     : cover;
+    image-rendering: auto;
+    border-radius  : 10px;
+    box-shadow     : 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition     : transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.promotion-image:hover {
+    transform : scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+.box {
+    margin-top      : 75px;
+    background-color: #e0e0e0;
+}
+
+
+
+.promotion-image:hover {
+    transform : scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    [nz-carousel-content] {
+        height: auto;
+    }
+
+    .promotion-image {
+        object-fit: contain;
+    }
+}

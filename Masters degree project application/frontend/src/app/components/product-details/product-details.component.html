@@ -1,0 +1,120 @@
+<div class="product-container">
+  <div class="ad-left">
+    <a
+      href="https://www.youtube.com/watch?v=xvFZjo5PgG0&ab_channel=Duran"
+      target="_blank"
+    >
+      <img src="assets/Add/add-left.png" alt="Reklama lewa" class="ad-image" />
+    </a>
+  </div>
+  <div class="product-details">
+    <nz-breadcrumb>
+      <nz-breadcrumb-item>
+        <a routerLink="/">Home</a>
+      </nz-breadcrumb-item>
+      <nz-breadcrumb-item>
+        <a routerLink="/category/{{ product?.category }}">{{
+          product?.category
+        }}</a>
+      </nz-breadcrumb-item>
+      <nz-breadcrumb-item>{{ product?.name }}</nz-breadcrumb-item>
+    </nz-breadcrumb>
+
+    <div class="row mt-4">
+      <div class="col-lg-6">
+        <div class="main-photo-container">
+          <img
+            [src]="selectedPhoto || product?.mainPhoto"
+            [alt]="product?.name"
+            class="main-photo"
+          />
+        </div>
+
+        <div class="thumbnail-container d-flex mt-3">
+          <img
+            *ngFor="let photo of product?.photos"
+            class="thumbnail"
+            [src]="photo"
+            [alt]="product?.name"
+            (click)="selectPhoto(photo)"
+          />
+        </div>
+      </div>
+
+      <div class="col-lg-6 product-info">
+        <h1 class="product-title">{{ product?.name }}</h1>
+        <p class="product-category">
+          <strong>Kategoria:</strong> {{ product?.category }}
+        </p>
+
+        <div class="product-price">
+          <span class="current-price">{{
+            product?.discountedPrice | currency : "PLN"
+          }}</span>
+          <span *ngIf="product?.discount" class="product-price-old">{{
+            product?.price | currency : "PLN"
+          }}</span>
+        </div>
+
+        <div class="product-rating my-3">
+          <nz-rate
+            [ngModel]="product?.averageRating"
+            [nzDisabled]="true"
+          ></nz-rate>
+          <span>({{ product?.reviews?.length }} opinie)</span>
+        </div>
+
+        <div class="additional-details mt-4">
+          <h4>Szczegóły produktu</h4>
+          <div class="details-grid">
+            <div><strong>Marka:</strong> {{ product?.brand }}</div>
+            <div><strong>Model:</strong> {{ product?.model }}</div>
+            <div><strong>Dostawca:</strong> {{ product?.supplier }}</div>
+            <div>
+              <strong>Stan magazynowy:</strong> {{ product?.stockQuantity }}
+            </div>
+          </div>
+        </div>
+
+        <div class="actions mt-4">
+          <button
+            nz-button
+            nzType="primary"
+            nzShape="round"
+            (click)="addToCart()"
+          >
+            <i nz-icon nzType="shopping-cart"></i> Dodaj do koszyka
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ad-right">
+    <a
+      href="https://www.youtube.com/watch?v=xvFZjo5PgG0&ab_channel=Duran"
+      target="_blank"
+    >
+      <img
+        src="assets/Add/add-right.png"
+        alt="Reklama prawa"
+        class="ad-image"
+      />
+    </a>
+  </div>
+</div>
+<div class="product-description-section mt-5">
+  <h4>Opis produktu</h4>
+  <p class="product-description">{{ product?.description }}</p>
+</div>
+
+<div class="recommended-section">
+  <app-custom-carousel
+    [products]="similarProducts"
+    title="Podobne produkty"
+  ></app-custom-carousel>
+
+  <app-custom-carousel
+    [products]="relatedProducts"
+    title="Produkty, które mogą Ci się spodobać"
+  ></app-custom-carousel>
+</div>

@@ -1,0 +1,188 @@
+body {
+    font-family    : 'Poppins', sans-serif;
+    margin         : 0;
+    padding        : 0;
+    background     : #f3f4f7;
+    display        : flex;
+    justify-content: center;
+    align-items    : center;
+    height         : 100vh;
+}
+
+.register-container {
+    max-width: 600px;
+    margin   : 140px auto;
+}
+
+.register-card {
+    padding         : 20px;
+    background-color: #fff;
+    border-radius   : 16px;
+    box-shadow      : 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.register-title {
+    text-align   : center;
+    margin-bottom: 24px;
+    font-size    : 28px;
+    font-weight  : 600;
+    color        : #333;
+}
+
+.form-row {
+    display        : flex;
+    justify-content: space-between;
+    margin-bottom  : 16px;
+}
+
+.form-row nz-form-label {
+    margin-top : 10px;
+    flex-basis : 40%;
+    text-align : left;
+    font-size  : 14px;
+    font-weight: 600;
+    color      : #333;
+}
+
+.form-row nz-form-control {
+    flex-basis     : 55%;
+    display        : flex;
+    justify-content: flex-start;
+}
+
+.form-row input {
+    width           : 100%;
+    padding         : 12px;
+    font-size       : 14px;
+    border          : 1px solid #ddd;
+    border-radius   : 8px;
+    background-color: #f8f9fa;
+}
+
+.address-group {
+    display      : flex;
+    gap          : 10px;
+    margin-bottom: 10px;
+}
+
+.address-inputs input {
+    flex: 1;
+}
+
+
+
+
+.register-btn {
+    width           : 50%;
+    height          : 50px;
+    background-color: #25415e;
+    border          : none;
+    color           : white;
+    font-size       : 18px;
+    font-weight     : 600;
+    border-radius   : 16px;
+    margin          : 20px auto 0;
+    display         : block;
+    text-align      : center;
+    transition      : background-color 0.3s ease;
+}
+
+
+.register-btn:hover {
+    background-color: #0056b3;
+}
+
+.remove-btn {
+    width           : auto;
+    background-color: #e74c3c;
+    color           : white;
+    font-size       : 14px;
+    font-weight     : 500;
+    border-radius   : 8px;
+    text-align      : center;
+    margin-bottom   : 10px;
+}
+
+.error-message {
+    margin-top      : 16px;
+    padding         : 12px;
+    border-radius   : 8px;
+    background-color: #f8d7da;
+    color           : #e74c3c;
+    font-size       : 16px;
+    text-align      : center;
+}
+
+.add-address-btn {
+    width           : 50%;
+    margin          : 20px auto;
+    background-color: #25415e;
+    color           : white;
+    font-size       : 14px;
+    font-weight     : 500;
+    border          : none;
+    border-radius   : 8px;
+    display         : block;
+    text-align      : center;
+}
+
+button {
+    display        : flex;
+    justify-content: center;
+    align-items    : center;
+}
+
+.form-row .ng-invalid.ng-touched {
+    border: 1px solid #e74c3c;
+}
+
+.form-row .ng-valid.ng-touched {
+    border: 1px solid #2ecc71;
+}
+
+.form-row div {
+    font-size : 12px;
+    color     : #e74c3c;
+    margin-top: 5px;
+}
+
+.remove-btn,
+.add-address-btn {
+    margin-top: 12px;
+}
+
+.error-toast {
+    position        : fixed;
+    bottom          : 60px;
+    right           : 20px;
+    z-index         : 1000;
+    background-color: #f8d7da;
+    color           : #721c24;
+    padding         : 12px 20px;
+    border-radius   : 8px;
+    box-shadow      : 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-size       : 16px;
+    animation       : fadeInOut 3s ease-in-out forwards;
+}
+
+@keyframes fadeInOut {
+    0% {
+        opacity  : 0;
+        transform: translateY(10px);
+    }
+
+    10% {
+        opacity  : 1;
+        transform: translateY(0);
+    }
+
+    90% {
+        opacity  : 1;
+        transform: translateY(0);
+    }
+
+    100% {
+        opacity  : 0;
+        transform: translateY(10px);
+    }
+}

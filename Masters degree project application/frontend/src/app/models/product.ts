@@ -1,0 +1,30 @@
+export class Product {
+  constructor(
+    public id: string,
+    public name: string,
+    public description: string,
+    public price: number,
+    public category: string,
+    public purchaseCount: number,
+    public purchaseCountPreviousMonth: number,
+    public lastPurchaseDate: Date,
+    public relatedCategories: string[],
+    public mainPhoto: string,
+    public photos: string[],
+    public priceRange: string,
+    public stockQuantity: number,
+    public supplier: string,
+    public brand: string,
+    public model: string,
+    public discount: number,
+    public discountedPrice: number,
+    public promotionEndDate: Date,
+    public averageRating: number,
+    public reviews: string[],
+    public isRecommended: boolean,
+    public customerViews: number,
+    public createdDate: Date,
+    public updatedDate: Date,
+    public status: string
+  ) {}
+}

@@ -1,0 +1,108 @@
+<nav
+  class="navbar custom-navbar"
+  [class.expanded]="isNavbarExpanded"
+  (mouseleave)="onNavbarMouseLeave()"
+>
+  <div class="container-fluid">
+    <!-- Logo Section -->
+    <a class="navbar-logo" href="#">
+      <i class="fas fa-store navbar-logo-icon"></i>
+      Sklep IT
+    </a>
+
+    <!-- Search bar container -->
+    <div class="search-container">
+      <nz-input-group [nzSuffix]="suffixIcon">
+        <input
+          nz-input
+          [(ngModel)]="searchTerm"
+          (focus)="toggleSearch(true)"
+          (blur)="toggleSearch(false)"
+          (input)="onSearchInput()"
+          placeholder="Szukaj"
+        />
+      </nz-input-group>
+      <ng-template #suffixIcon>
+        <i class="fas fa-search search-icon"></i>
+      </ng-template>
+      <div class="search-results-panel" *ngIf="isSearchActive && searchTerm">
+        <app-search-results [searchTerm]="searchTerm"></app-search-results>
+      </div>
+    </div>
+
+    <!-- Categories Trigger -->
+    <div class="categories-trigger" (mouseenter)="toggleNavbar(true)">
+      <span>Kategorie</span>
+      <i class="fa-solid fa-folder-open"></i>
+    </div>
+
+    <!-- Auth and Cart section -->
+    <div class="auth-cart">
+      <ng-container *ngIf="loginStatus$ | async; else loggedOutTemplate">
+        <button
+          nz-button
+          nzType="default"
+          class="user-panel-trigger"
+          (click)="gotoUserPanel()"
+        >
+          <span>Panel użytkownika</span>
+          <i class="fas fa-user-cog"></i>
+        </button>
+
+        <button
+          nz-button
+          nzType="default"
+          class="orders-trigger"
+          (click)="gotoOrders()"
+        >
+          <span>Zamówienia</span>
+          <i class="fas fa-box"></i>
+        </button>
+        <button
+          nz-button
+          nzType="default"
+          class="logout-trigger"
+          (click)="logout()"
+        >
+          <span> Wyloguj się</span>
+          <i class="fas fa-sign-out-alt"></i>
+        </button>
+      </ng-container>
+
+      <ng-template #loggedOutTemplate>
+        <button
+          nz-button
+          nzType="default"
+          class="login-trigger"
+          (click)="login()"
+        >
+          <span> Zaloguj się</span>
+          <i class="fas fa-user"></i>
+        </button>
+      </ng-template>
+    </div>
+
+    <!-- Cart Icon Section -->
+    <div class="cart-icon" (click)="gotoShopingCart()">
+      <i class="fas fa-shopping-cart"></i>
+    </div>
+  </div>
+
+  <!-- Navbar Separator -->
+  <div *ngIf="isNavbarExpanded" class="navbar-separator"></div>
+
+  <!-- Categories list (expanded state) -->
+  <div
+    *ngIf="isNavbarExpanded"
+    class="categories-list"
+    (mouseleave)="onCategoriesListMouseLeave()"
+  >
+    <div
+      *ngFor="let category of categories"
+      class="category-item"
+      (click)="selectCategory(category.name)"
+    >
+      <i class=""></i> {{ category.name }}
+    </div>
+  </div>
+</nav>

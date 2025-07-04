@@ -1,0 +1,56 @@
+<div class="login-container">
+  <nz-card class="login-card">
+    <h2 class="login-title">Witamy ponownie</h2>
+
+    <form nz-form (ngSubmit)="login()">
+      <nz-form-item>
+        <div class="margin">
+          <nz-form-label [nzFor]="'username'">Login</nz-form-label>
+        </div>
+        <nz-form-control [nzErrorTip]="'Wprowadź nazwę użytkownika!'">
+          <input
+            nz-input
+            id="username"
+            type="text"
+            [(ngModel)]="username"
+            name="username"
+            placeholder="Wprowadź nazwę użytkownika"
+            class="input-field"
+          />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <div class="margin">
+          <nz-form-label [nzFor]="'password'">Hasło</nz-form-label>
+        </div>
+        <nz-form-control [nzErrorTip]="'Wprowadź hasło!'">
+          <input
+            nz-input
+            id="password"
+            type="password"
+            [(ngModel)]="password"
+            name="password"
+            placeholder="Wprowadź hasło"
+            class="input-field"
+          />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <button nz-button [nzLoading]="loading" type="submit" class="login-btn">
+          Zaloguj się
+        </button>
+      </nz-form-item>
+    </form>
+
+    <div class="register-link">
+      <p>
+        Nie masz jeszcze konta?
+        <a (click)="goToRegister()">Zarejestruj się</a>
+      </p>
+    </div>
+  </nz-card>
+</div>
+
+<div class="error-message" *ngIf="errorMessage"></div>
